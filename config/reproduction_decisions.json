@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "policy_id": "disclosed-reproduction-configuration-v1",
+  "priority": "作者明确推荐配置优先；无法获取、未说明或相互矛盾的配置采用下列项目决定。配置随二进制编译冻结。",
+  "sncph": {
+    "k": 20,
+    "max_it": 2,
+    "patterns_per_variant": 10,
+    "price": 0.1,
+    "penalty": 0.1,
+    "panel_height_multiple": 4,
+    "raster_heights": [
+      128,
+      256,
+      512
+    ],
+    "source": "Baldacci等，DOI 10.1016/j.dam.2012.03.026，§5.1–5.3、§7。https://www.researchgate.net/publication/259099164_Algorithms_for_nesting_with_defects",
+    "decisions": [
+      "对于SNCPH，K、MaxIt、每配置模式数在可获取原文中没有具体数值；我们采用K=20、MaxIt=2、每配置10个模式，分别控制候选容量、无新增件迭代计数及价格更新次数，不以延长时间代替这些停止规则。",
+      "对于SNCPH，price与penalty原文只要求为正；我们均采用0.1。价格从1开始，每模式后覆盖像素减penalty，未覆盖像素加price。原文推荐k1=k2=k3=k4=1，保持该设定。",
+      "对于SNCPH，原文给出512×512至2048×2048的分辨率范围，但没有逐样例面板、层级及条带包装配置。我们采用物理长度4H的有限面板，栅格512×128、1024×256、2048×512；这是项目选择，较低层高度不等于论文的512像素方形高度。采用SNH1/SNH2及二者作为SNH3初始器，各配PH1/2/3，共12配置；取完整合法模式的最小实际长度。",
+      "对于SNCPH，gamma图示没有可执行的区域分解；我们计数包围盒左侧整列及盒横跨范围内上方或下方的未覆盖像素。PH3初始点采用左上角，保留初始可行点；不可行点始终劣于可行点，以面板及像素价格的绝对上界推导偏移，避免固定1e12掩盖评分差异或被大价格突破。方向保持原文6方向；相邻旋转是XML合法角序的前后项。",
+      "对于SNCPH，跨朝向扫描顺序及并列值规则未说明；逐XML角度求PH候选后按phi最大选择，并列保留先遇项。使用输入坐标，不作最小矩形预旋转。压紧沿原文PH3的严格phi上升及交替上下策略进行；不能声称为全局最紧凑布局。"
+    ]
+  },
+  "gcs": {
+    "nests": 15,
+    "generations": 30,
+    "abandonment": 0.25,
+    "stagnation": 200,
+    "levy_beta": 1.5,
+    "boundary": "clip",
+    "expansion_base": "current",
+    "shrink": 0.04,
+    "expand": 0.01,
+    "source": "Elkeran 2013，DOI 10.1016/j.ejor.2013.06.020，§5–6、Algorithm 1、Table 3。https://www.researchgate.net/publication/270725215_A_new_approach_for_sheet_nesting_problem_using_guided_cuckoo_search_and_pairwise_clustering",
+    "decisions": [
+      "对于GCS，Dighe1/2的论文最佳配置是零聚类，本实现只覆盖这一获选分支，拒绝其他实例；未实现正聚类分支，不称为通用完整GCS。保留作者alpha=1、nc=15、MaxGen=30、Pa=0.25、Nmo=200及缩短4%、扩张1%的设定。",
+      "对于GCS，Lévy指数、二维步长与越界处理没有可确认的作者推荐值；我们采用Mantegna beta=1.5、按beta计算sigma、均匀二维方向、坐标裁剪到IFR。允许显式切换为resample越界策略作敏感性检查；默认clip。",
+      "对于GCS，替换数量取整及替换细节未明确；每代生成一个Lévy提议，与随机巢比较，随后按ceil(Pa*nc)=4替换最差巢，替代位置独立均匀抽样。随机数采用有种子的xorshift64。",
+      "对于GCS，正文从当前长度扩张与Algorithm 1从Lbest扩张不一致；默认按正文从当前长度乘1.01，始终独立保留最优合法布局。配置支持best分支。NFP准备计入每次600秒预算。",
+      "对于GCS，初始化的反向y工作坐标统一转换回XML。越界件按原文最小穿透目标在完整NFP/IFR接触排列上放置；零穿透候选并列按原有度量及坐标稳定选择，不用稀疏采样或通用后处理冒充原算法。",
+      "对于GCS，Jagua横向运行域只用于几何验证，不构成论文长度上限；试探布局超过该域时按实际长度重建验证域，保留XML固定宽度、轮廓、合法角度和原长度更新规则。"
+    ]
+  },
+  "three_pm": {
+    "initial_spacing": 2.0,
+    "minimum_spacing": 0.5,
+    "refinement": 0.5,
+    "maximum_dots_per_reference": 3000,
+    "first_square_half_side_factor": 2.0,
+    "reference_vertex_index": 0,
+    "batch_rule": "printed_algorithm_4",
+    "source": "A model-based heuristic for the irregular strip packing problem (2016), DOI 10.1590/0101-7438.2016.036.03.0447，§2、§3.2、§4.1、Algorithm 2/4。",
+    "decisions": [
+      "对于3PM，作者未公布逐件参考顶点，我们取原XML第一个实际顶点，不用包围盒角替代顶点；网格与移动窗均保留参考点偏移。配置中的reference_vertex_index可选其他原始顶点。",
+      "对于3PM，Figure 6中的s未定义，我们取s=gmin，即首邻域正方形边长4*gmin。md=3000按原文限制每个参考点的矩形邻域，随后取并集；等距离边界整体纳入或排除，保留全部当前布局点。",
+      "对于3PM，批量选择文字示例与Algorithm 4不一致，我们默认逐字采用Algorithm 4的余数最大规则与原循环顺序；同时提供prose_divisor_priority对照分支，按正文优先选择[5,min(12,n-1)]内最大的整除批量；不存在整除项时取最大余数，并列取最大批量。gmin下限0.5按§4.1纳入，未采用Algorithm 2的严格大于符号。",
+      "对于3PM，CPLEX12.5不可用且没有有效商业许可证，采用精确原生DBM搜索和Z3有理数连续优化，不能识别的模型回退CBC2.10.13。保持目标与几何可行域；求解器轨迹和限时结果可能不同。",
+      "对于3PM，整数轮廓且零间距的支持面直接从Minkowski凸包原顶点生成原始整数法向量及整数常数；不从归一化浮点系数反推或将近整数常数四舍五入。安全整数范围外或非整数面不交给整数专用SMT识别器。移动窗保持原binary64精确有理数。连续压紧只在论文局部移动窗内最小化L，证明最优时停止无改进；不是全局装箱最优证明。"
+    ]
+  },
+  "chs2": {
+    "initial_pieces": 12,
+    "mip_seconds": 100.0,
+    "source": "Sykora 2013作者学位论文，Algorithm 2、HS2及Table 6.8。",
+    "decisions": [
+      "对于CHS2，采用作者Table 6.8的n_ini=12配置；先求初始子问题，再逐件插入。固定旧件对的切片选择，不固定其坐标；每个MIP的100秒上限单独计算，全局watchdog不能冒充论文停止规则。",
+      "对于CHS2，CPLEX不可用，采用单线程CBC2.10.13；保持水平外切片、最大凸凹槽封闭、HS2提升不等式及min L目标，限时或并列解可能与作者不同。未定义的并列坐标由固定版本求解器决定，不擅自加入新目标改变后续轨迹。",
+      "对于CHS2，紧凑性指所选切片约束下最小化L；限时可行解不代表最优。退化点、线接触保持可行；以求解器optimal状态区分已证明的子问题最优与限时可行解。",
+      "对于CHS2，作者未提供可用CPLEX环境和热启动细节；我们向同一HS2模型提交可行MIP start：保留前次坐标及已固定切片，将新件附于右端，再选择满足原不等式的新切片并校验整个原模型。它仅为初始incumbent，最终布局取CBC优化输出；旧件坐标保持自由。",
+      "对于CHS2，作者没有CBC推荐配置；我们采用串行CBC2.10.13、timeMode=elapsed、randomSeed=1、randomCbcSeed=1、整数预处理关闭、LP预求解关闭。单MIP外部100秒上限包含模型序列化和解写出，内部至少预留2秒并按行数增加余量。OMP_NUM_THREADS=1及单CPU亲和性控制线程；不向不支持threads选项的串行构建传入该参数。独立试验使用面积加权序列的不同种子。",
+      "对于CHS2，旧件对直接继承原已固定切片索引并核对原模型上下界为1；新件对才选择切片。所有候选仍须通过整个原MIP既定残差校验，避免额外的更严分类误拒退化接触；不吸附坐标或放松原几何阈值。",
+      "对于CHS2，固定0度布局若触发GEOSException，使用XML原轮廓和binary64平移的精确有理数三角剖分及相交校验，并保持同一误差阈值。此路径不修改轮廓或坐标，几何通过不代表求解最优。"
+    ],
+    "cbc_preprocess": false,
+    "cbc_presolve": false
+  },
+  "semi_discrete_blf": {
+    "resolution": 0.5,
+    "source": "Chehrazad、Roose、Wauters，A107，§3.2–4，Figures 12–13。",
+    "decisions": [
+      "对于SemiDiscreteBLF，采用论文R=0.5及零长度顶点区间扩展的默认模式；只把该零长度区间延伸至相邻线对应区间的最近端点，保留L/R侧标签，不同时在两条线加Middle桥。内区间桥接默认关闭。",
+      "对于SemiDiscreteBLF，ActiveEdges由直接线段求交等价替代；按首尾及二分中点顺序检测区间。连续y每次上移后从所有线重新验证，寻找当前离散x的最低合法y；相反L/R边界允许接触，M内部重合禁止。 若接触上移因舍入停滞，使用下一个可表示的y并重新检查全部区间；不把该数值停滞当作整列不可行。",
+      "对于SemiDiscreteBLF，等包围盒面积件的次序未说明，采用原输入索引稳定打破并列；合法朝向候选按右端、上端、角度排序。原轮廓校验若否定半离散候选，则记录诊断并搜索同列后续精确接触事件，不能直接跳列漏掉低处合法位置。",
+      "对于SemiDiscreteBLF，结束规则为完成构造；分辨率R=0.5用于所选Poly5b。紧凑性限于离散x与半离散包络约束下的BLF，不代表连续几何全局最优。"
+    ]
+  },
+  "sparrow": {
+    "source_commit": "7f069e9d146f5599d7ba69a47ab4e8097c56e54f",
+    "toolchain": "nightly-2026-01-15",
+    "features": [
+      "simd",
+      "only_final_svg"
+    ],
+    "rustflags": "-C target-cpu=native",
+    "workers": 3,
+    "exploration_seconds": 960,
+    "compression_seconds": 240,
+    "source": "An open-source heuristic to reboot 2D nesting research，arXiv:2509.13329v4；作者源码README的Targeting maximum performance建议。",
+    "decisions": [
+      "对于Sparrow，采用作者README推荐的nightly、SIMD、target-cpu=native、release及only_final_svg。作者未锁定nightly日期及历史传递依赖，我们选择与固定源码兼容的nightly-2026-01-15，保留Cargo.lock；不宣称历史传递依赖完全相同。",
+      "对于Sparrow，采用论文每次20分钟、960秒探索与240秒压缩、3workers。几何和紧凑放置沿用作者原算法，不附加本项目通用压紧器。"
+    ]
+  },
+  "svgnest_fixed_order": {
+    "decisions": [
+      "对于F057附表SVGnest固定序矢量对照，采用固定提交的作者JS包装、SVGnest及附表顺序，进行单次placement-worker调用；Han、Poly3b、Poly4b使用官方XML和合法角度。这是附表矢量对照方法，不是完整SVGnest遗传算法或论文提出的栅格方法。"
+    ]
+  },
+  "compactness_policy": [
+    "紧凑放置必须按论文对应的目标、邻域、网格或半离散包络判断；几何合法只是一项必要条件。连续滑动、任意换序或全局最优不能从局部检查推导。",
+    "不遗漏凹槽、IFR墙、NFP边交点、退化点线接触；半离散BLF验证最早x与最低y，SNCPH验证phi局部最优，3PM/CHS2同时检查模型与求解optimal状态。",
+    "用户允许微小几何误差，但原始误差仍须独立导出。不得以宽度显著改变、缩小轮廓或后处理修补替代论文placement。",
+    "作者原输入和设置搜不到的部分按无法获取结案，采用官方XML及上述项目决定，不继续等待材料，也不宣称恢复了作者未公开配置。"
+  ]
+}

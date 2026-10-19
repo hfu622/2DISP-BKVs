@@ -1,0 +1,7 @@
+# Preserve upstream inputs, source snapshots and numeric records byte-for-byte.
+official_esicup/xml/** -text -whitespace
+vendor/** -text -whitespace
+reproductions/** -text -whitespace
+config/** -text whitespace=cr-at-eol
+data/** -text whitespace=cr-at-eol
+scripts/** -text whitespace=cr-at-eol

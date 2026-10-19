@@ -1,0 +1,54 @@
+{
+  "files": [
+    {
+      "repository": "https://github.com/Hermione-HKX/Raster-Convolution-Search-and-CTM-Bench",
+      "commit": "c7aaa7e8c31db15f4f7df7673b2cecfc362b21cd",
+      "path": "code/svgnest_albano_runner.js",
+      "destination": "external/Raster-Convolution-Search-and-CTM-Bench/code/svgnest_albano_runner.js",
+      "sha256": "363f3153c38d9e1986943c77ad6116475db91b42502e5ae47aed897ed5abcebb"
+    },
+    {
+      "repository": "https://github.com/Hermione-HKX/Raster-Convolution-Search-and-CTM-Bench",
+      "commit": "c7aaa7e8c31db15f4f7df7673b2cecfc362b21cd",
+      "path": "results/svgnest_public_xml.csv",
+      "destination": "external/Raster-Convolution-Search-and-CTM-Bench/results/svgnest_public_xml.csv",
+      "sha256": "72f8ece78212dc3ae5ac893c13b73807a7d7ed5430720e72380a9e60b0df645c"
+    },
+    {
+      "repository": "https://github.com/Hermione-HKX/Raster-Convolution-Search-and-CTM-Bench",
+      "commit": "c7aaa7e8c31db15f4f7df7673b2cecfc362b21cd",
+      "path": "results/public_xml_smoke.csv",
+      "destination": "external/Raster-Convolution-Search-and-CTM-Bench/results/public_xml_smoke.csv",
+      "sha256": "1f082f782c9bafd9d02ac8de599d29a57ce54721cac166d23511dc0ba4546e08"
+    },
+    {
+      "repository": "https://github.com/Jack000/SVGnest",
+      "commit": "1248dc21efd3f90d1aa52ba5785e27e5217ed2c9",
+      "path": "util/clipper.js",
+      "destination": "external/Raster-Convolution-Search-and-CTM-Bench/external/SVGnest/util/clipper.js",
+      "sha256": "2b8f6241f39fede1ebddcd827e82d422b44a6aa764d1b1b934a54a9b1560573f"
+    },
+    {
+      "repository": "https://github.com/Jack000/SVGnest",
+      "commit": "1248dc21efd3f90d1aa52ba5785e27e5217ed2c9",
+      "path": "util/geometryutil.js",
+      "destination": "external/Raster-Convolution-Search-and-CTM-Bench/external/SVGnest/util/geometryutil.js",
+      "sha256": "692e2fd684c203900322a575f69e2611515b8e53af26506ae3861bb80ebe996a"
+    },
+    {
+      "repository": "https://github.com/Jack000/SVGnest",
+      "commit": "1248dc21efd3f90d1aa52ba5785e27e5217ed2c9",
+      "path": "util/placementworker.js",
+      "destination": "external/Raster-Convolution-Search-and-CTM-Bench/external/SVGnest/util/placementworker.js",
+      "sha256": "6b560b72eed530c7a775ebdcd5f5fb2be6059f7480be01812562b8bcd0404d4b"
+    },
+    {
+      "repository": "https://github.com/Jack000/SVGnest",
+      "commit": "1248dc21efd3f90d1aa52ba5785e27e5217ed2c9",
+      "path": "LICENSE.txt",
+      "destination": "external/Raster-Convolution-Search-and-CTM-Bench/external/SVGnest/LICENSE.txt",
+      "sha256": "63249e67e62c3c4142252688c170ab27fa401f55a96f12b54cd6187ba2f699af"
+    }
+  ],
+  "license_note": "SVGnest MIT retained locally; F057 wrapper license not confirmed, fetch from author rather than redistribute"
+}
