@@ -1,12 +1,12 @@
 # 2DISP-BKVs
 
-This project identifies candidate best known values (BKVs) for 25 Nesting instances among the audited publications on non-learning, non-exact methods for two-dimensional irregular strip packing (2DISP). It compares published results with values obtained using author code or our implementations. A BKV is a best known value, not a proof of optimality. Sources with unconfirmed inputs or configurations are marked separately.
+This project identifies candidate best known (utilization) values (BKVs) for 25 Nesting instances among the audited publications on non-exact algorithms for the **Two-Dimensional Irregular Strip Packing (2DISP)** problem. It compares published results with values obtained using author code or our implementations. Sources with unconfirmed inputs or configurations are marked separately.
 
-## 1. Dataset source
+## 1. Dataset Source
 
-The data come from the [official ESICUP 2d_irregular dataset](https://github.com/ESICUP/datasets/tree/main/2d_irregular). The [25 official XML files](official_esicup/xml) preserve the contours, quantities, initial orientations, and allowed rotations. `shapes2.xml` is an alias for the upstream `blaz/blaz.xml`; its contents are unchanged.
+The data come from the [official ESICUP 2d_irregular dataset](https://github.com/ESICUP/datasets/tree/main/2d_irregular). The [25 official XML files](official_esicup/xml) preserve the contours, quantities, initial orientations, and allowed rotations. `shapes2.xml` is an alias for the upstream `blaz/blaz.xml`; its contents stay unchanged.
 
-## 2. Algorithms, instance assignments, and references
+## 2. Algorithms and Assignments
 
 | Selected algorithm | Instances | Code source |
 |---|---|---|
@@ -26,21 +26,21 @@ The data come from the [official ESICUP 2d_irregular dataset](https://github.com
 6. Antonio Martinez Sykora (2013). [Nesting problems: exact and heuristic algorithms](https://www.uv.es/marsyan/docs/thesis.pdf). The CHS2 constructive heuristic is described in Chapter 6 of this doctoral thesis.
 7. Chehrazad, Roose, and Wauters (2022). [A fast and scalable bottom-left-fill algorithm to solve nesting problems using a semi-discrete representation](https://doi.org/10.1016/j.ejor.2021.10.043).
 
-## 3. Reimplementation methods
+## 3. Reimplementation Methods
 
-Selected methods without available author code are implemented in Rust, using [Jagua](https://github.com/JeroenGar/jagua-rs) 1.1.0 for the geometry infrastructure. NFP/IFR geometry, contact candidates, price updates, insertion, and local compaction follow the definitions in the respective papers, preserving concavities and degenerate point and line contacts. Compactness is assessed against each method's objective, neighborhood, or discrete envelope: SNCPH checks local phi improvements; semi-discrete BLF seeks the earliest column and lowest feasible position; 3PM/CHS2 retain the model's minimum-length objective and distinguish time-limited feasibility from proven subproblem optimality. Geometric feasibility alone does not establish algorithmic fidelity or global compactness.
+Selected methods without available author code are implemented in Rust, using [Jagua](https://github.com/JeroenGar/jagua-rs) 1.1.0 for the geometry infrastructure. NFP/IFR geometry, contact candidates, price updates, insertion and local compaction follow the definitions in the respective papers, preserving concavities and degenerate point and line contacts. Compactness is assessed against each method's objective, neighborhood, or discrete envelope: SNCPH checks local phi improvements; semi-discrete BLF seeks the earliest column and lowest feasible position; 3PM/CHS2 retain the model's minimum-length objective and distinguish time-limited feasibility from proven subproblem optimality. Geometric feasibility alone does not establish algorithmic fidelity or global compactness.
 
 3PM uses native DBM discrete search and [Z3](https://github.com/Z3Prover/z3) rational continuous optimization, with [CBC](https://github.com/coin-or/Cbc) as a fallback for models the specialized backend cannot recognize. CHS2 uses CBC in place of CPLEX. Exact optimization subproblems within an overall heuristic are distinct from solving the complete 2DISP problem with an exact algorithm. Layouts are independently checked against the original official contours using Shapely/GEOS; rational geometry checks are also available for degenerate fixed-0° cases. Shrinking pieces or substantially changing the strip width is not an acceptable way to obtain a utilization value.
 
 The repository includes [reimplementation source](reproductions/src), [functional tests](reproductions/tests), [author source and licenses](vendor), and [actual configurations and decisions for unspecified parameters](config/reproduction_decisions.json). Licenses apply separately to each source: Sparrow is MIT-licensed and Jagua is MPL-2.0-licensed. The F057 wrapper's license is unconfirmed, so its body is not redistributed; a pinned source list with SHA256 checks is provided instead.
 
-## 4. Published references and measured values
+## 4. Published References and Measured Values
 
 Measured utilization uses the official nominal strip width; higher is better. Lengths are expressed in the paper comparison units; lower is better. Raw XML scaling units must not be mixed with those units. The table shows the best measured value under the disclosed configuration. For the seven instances whose selected source reports only length, utilization is derived from the official XML and marked with a superscript footnote; the original length is retained. Differences are measured minus reference, in percentage points (pp) for utilization and in L for length. F057 supplementary values include both rounded utilization and length, so very small differences are largely attributable to display precision.
 
 † The author's original input or some configuration details are unavailable; the published value is a conditional reference. ‡ An accepted small numerical variant; see the limitations below.
 
-| Instance | Algorithm | Published / derived reference | Measured utilization % | Measured length L | Difference |
+| Instance | Algorithm | Published / Derived Reference | Measured Utilization % | Measured Length L | Difference |
 |---|---|---|---:|---:|---|
 | albano | Sparrow | 89.82% | 89.785369 | 9695.863000 | -0.034631 pp |
 | dagli | Sparrow | 90.17% | 89.825012 | 56.303917 | -0.344988 pp |
@@ -78,7 +78,7 @@ The assignments identify candidate BKVs among audited sources; they do not prove
 
 Official Shirts contains 99 pieces; the original local copy contained 85. The official version is used here. Official Jakobs2 contains complete endpoints; the small contour variants affecting Jakobs2/Swim retain comparability limitations. Han's official XML total area is 1960, whereas another XLS/PDF version has area 1970; these versions are not mixed. Sparrow uses a small 0.01% strip-width expansion for Fu, Jakobs1/2, and Shapes0/1/2. Utilization in this table still uses the official nominal width, so these values should not be treated as records under a strictly unchanged width and zero geometric error.
 
-| Algorithm | Unspecified, conflicting, or unavailable information | Adopted configuration |
+| Algorithm | Unspecified or Unavailable Information | Adopted Configuration |
 |---|---|---|
 | SNCPH | K, MaxIt, pattern counts, and per-instance raster/panel settings are unspecified; price increments and decrements are only required to be positive | K=20, MaxIt=2, 10 patterns per configuration, price=penalty=0.1, initial price 1; finite panel length 4H; raster grids 512×128, 1024×256, and 2048×512. SNH1/2 and SNH3 initialized by either of them are each combined with PH1/2/3, giving 12 configurations. These are disclosed project choices, not recovered unpublished author controls |
 | GCS | The Lévy exponent, boundary handling, and replacement rounding are unspecified; the prose and pseudocode conflict on the expansion base | Dedicated zero-clustering Dighe branch; 15 nests, 30 generations, abandonment 0.25, stagnation 200; Mantegna β=1.5, clipping, and replacement of the worst four nests per generation. Following the prose, expand the current length by 1% and shrink by 4%, retaining the best feasible layout independently; 600 seconds per trial including NFP preparation |
