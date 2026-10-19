@@ -42,33 +42,33 @@ Measured utilization uses the official nominal strip width; higher is better. Th
 
 | Instance | Algorithm | Published / Derived Reference | Measured Utilization % | Difference |
 |:---:|:---:|:---:|:---:|:---:|
-| albano | Sparrow | 89.82% | 89.785369 | -0.034631 pp |
-| dagli | Sparrow | 90.17% | 89.825012 | -0.344988 pp |
-| dighe1† | GCS | 100.00% | 96.863871 | -3.136129 pp |
-| dighe2† | GCS | 100.00% | 99.737820 | -0.262180 pp |
-| fu‡ | Sparrow | 92.41% | 92.400787 | -0.009213 pp |
-| han | SVGNest-F057-fixed-order | 63.60% | 63.603421 | +0.003421 pp |
-| jakobs1‡ | Sparrow | 89.26% | 89.090488 | -0.169512 pp |
-| jakobs2‡ | Sparrow | 87.73% | 86.071262 | -1.658738 pp |
-| mao | Sparrow | 86.87% | 86.829851 | -0.040149 pp |
-| marques | Sparrow | 92.02% | 91.212726 | -0.807274 pp |
-| poly1a† | 3PM | 64.873418%[^1] | 66.386209 | +1.512791 pp |
-| poly2a† | SNCPH | 73.792811%[^1] | 67.368523 | -6.424288 pp |
-| poly2b† | CHS2 | 69.363497%[^1] | 63.342667 | -6.020830 pp |
-| poly3a† | SNCPH | 73.748517%[^1] | 72.701201 | -1.047316 pp |
-| poly3b | SVGNest-F057-fixed-order | 64.64% | 64.643931 | +0.003931 pp |
-| poly4a† | SNCPH | 73.792811%[^1] | 71.026150 | -2.766661 pp |
-| poly4b | SVGNest-F057-fixed-order | 66.49% | 66.491027 | +0.001027 pp |
-| poly5a† | SNCPH | 73.926011%[^1] | 70.063058 | -3.862953 pp |
-| poly5b† | SemiDiscreteBLF | 66.043165%[^1] | 64.647887 | -1.395278 pp |
-| shapes0‡ | Sparrow | 69.98% | 69.366562 | -0.613438 pp |
-| shapes1‡ | Sparrow | 76.73% | 76.706854 | -0.023146 pp |
-| shapes2‡ | Sparrow | 86.23% | 86.009366 | -0.220634 pp |
-| shirts | Sparrow | 90.92% | 89.991151 | -0.928849 pp |
-| swim‡ | Sparrow | 79.83% | 78.915916 | -0.914084 pp |
-| trousers | Sparrow | 92.62% | 92.333556 | -0.286444 pp |
+| albano | Sparrow | 89.82% | 89.79 | -0.03 pp |
+| dagli | Sparrow | 90.17% | 89.83 | -0.34 pp |
+| dighe1† | GCS | 100.00% | 96.86 | -3.14 pp |
+| dighe2† | GCS | 100.00% | 99.74 | -0.26 pp |
+| fu‡ | Sparrow | 92.41% | 92.40 | -0.01 pp |
+| han | SVGNest-F057-fixed-order | 63.60% | 63.60 | +0.00 pp |
+| jakobs1‡ | Sparrow | 89.26% | 89.09 | -0.17 pp |
+| jakobs2‡ | Sparrow | 87.73% | 86.07 | -1.66 pp |
+| mao | Sparrow | 86.87% | 86.83 | -0.04 pp |
+| marques | Sparrow | 92.02% | 91.21 | -0.81 pp |
+| poly1a† | 3PM | 64.87%[^1] | 66.39 | +1.51 pp |
+| poly2a† | SNCPH | 73.79%[^1] | 67.37 | -6.42 pp |
+| poly2b† | CHS2 | 69.36%[^1] | 63.34 | -6.02 pp |
+| poly3a† | SNCPH | 73.75%[^1] | 72.70 | -1.05 pp |
+| poly3b | SVGNest-F057-fixed-order | 64.64% | 64.64 | +0.00 pp |
+| poly4a† | SNCPH | 73.79%[^1] | 71.03 | -2.77 pp |
+| poly4b | SVGNest-F057-fixed-order | 66.49% | 66.49 | +0.00 pp |
+| poly5a† | SNCPH | 73.93%[^1] | 70.06 | -3.86 pp |
+| poly5b† | SemiDiscreteBLF | 66.04%[^1] | 64.65 | -1.40 pp |
+| shapes0‡ | Sparrow | 69.98% | 69.37 | -0.61 pp |
+| shapes1‡ | Sparrow | 76.73% | 76.71 | -0.02 pp |
+| shapes2‡ | Sparrow | 86.23% | 86.01 | -0.22 pp |
+| shirts | Sparrow | 90.92% | 89.99 | -0.93 pp |
+| swim‡ | Sparrow | 79.83% | 78.92 | -0.91 pp |
+| trousers | Sparrow | 92.62% | 92.33 | -0.29 pp |
 
-[^1]: These utilization values are calculated by this project from the official XML, rather than reported directly in the original publication. Because the author's original input or some settings are unavailable, these remain conditional references and do not establish identical author inputs. Differences use unrounded values before being displayed to six decimal places.
+[^1]: These utilization values are calculated by this project from the official XML, rather than reported directly in the original publication. Because the author's original input or some settings are unavailable, these remain conditional references and do not establish identical author inputs. Differences use unrounded values before being displayed to two decimal places.
 
 The [machine-readable per-instance summary](data/results_summary.json) retains the original source metrics, measured means, worst values, sample standard deviations where applicable, and source links. It contains scientific result summaries without operational records.
 
