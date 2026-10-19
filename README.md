@@ -72,7 +72,7 @@ Measured utilization uses the official nominal strip width; higher is better. Th
 
 The [machine-readable per-instance summary](data/results_summary.json) retains the original source metrics, measured means, worst values, sample standard deviations where applicable, and source links. It contains scientific result summaries without operational records.
 
-## 5. Limitations, unavailable information, and adopted configurations
+## 5. Limitations, Unavailable Information and Adopted Configurations
 
 The assignments identify candidate BKVs among audited sources; they do not prove the best value across the complete literature. A measured improvement is not automatically a new record for an identical published instance. Sixteen instances meet this project's input comparison rules: nine exact matches and seven quantified small variants. For Dighe1/2, Poly1a, Poly2a/b, Poly3a, Poly4a, and Poly5a/b, the author's original inputs or some configurations are unavailable. These nine cases retain conditional assignments and use official XML. Strict equivalence to the author's experiment is not claimed when original inputs, pre-rotations, or settings cannot be confirmed. Allowed Poly rotations follow the official XML.
 
