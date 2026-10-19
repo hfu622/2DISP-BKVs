@@ -4,7 +4,7 @@
 
 ## 1. 数据集来源
 
-数据来自 [ESICUP 官方 2d_irregular 数据集](https://github.com/ESICUP/datasets/tree/main/2d_irregular)，固定上游提交 `154a8f006a8e72f65d734f2d1e36777f678f31f8`。本仓库 [25 个官方 XML](official_esicup/xml) 保留轮廓、数量、初始朝向与合法角度；`shapes2.xml` 对应上游 `blaz/blaz.xml`，文件内容不变。
+数据来自 [ESICUP 官方 2d_irregular 数据集](https://github.com/ESICUP/datasets/tree/main/2d_irregular)。本仓库 [25 个官方 XML](official_esicup/xml) 保留轮廓、数量、初始朝向与合法角度；`shapes2.xml` 对应上游 `blaz/blaz.xml`，文件内容不变。
 
 ## 2. 逐样例算法归属与引用
 
@@ -18,9 +18,9 @@
 | CHS2 [6] | Poly2b | 本项目 Rust/Jagua 与 CBC |
 | SemiDiscreteBLF [7] | Poly5b | 本项目 Rust/Jagua 专用实现 |
 
-1. Gardeyn、Vanden Berghe、Wauters (2025). [An open-source heuristic to reboot 2D nesting research](https://arxiv.org/abs/2509.13329v4)。[作者 Sparrow 代码](https://github.com/JeroenGar/sparrow)，固定提交 `7f069e9d146f5599d7ba69a47ab4e8097c56e54f`。
+1. Gardeyn、Vanden Berghe、Wauters (2025). [An open-source heuristic to reboot 2D nesting research](https://arxiv.org/abs/2509.13329v4)。[作者 Sparrow 代码](https://github.com/JeroenGar/sparrow)。
 2. Elkeran (2013). [A new approach for sheet nesting problem using guided cuckoo search and pairwise clustering](https://doi.org/10.1016/j.ejor.2013.06.020)。
-3. (2026). [Raster-Convolution Search for Two-Dimensional Irregular Packing with Curved and Holed Parts](https://doi.org/10.1109/AANN71145.2026.11709270)。本表采用其[附表固定序矢量对照](https://github.com/Hermione-HKX/Raster-Convolution-Search-and-CTM-Bench/blob/c7aaa7e8c31db15f4f7df7673b2cecfc362b21cd/results/svgnest_public_xml.csv)，不是论文提出的栅格方法。[作者包装源码](https://github.com/Hermione-HKX/Raster-Convolution-Search-and-CTM-Bench)与 [SVGnest](https://github.com/Jack000/SVGnest) 分别固定在 `c7aaa7e8c31db15f4f7df7673b2cecfc362b21cd`、`1248dc21efd3f90d1aa52ba5785e27e5217ed2c9`。
+3. (2026). [Raster-Convolution Search for Two-Dimensional Irregular Packing with Curved and Holed Parts](https://doi.org/10.1109/AANN71145.2026.11709270)。本表采用其[附表固定序矢量对照](https://github.com/Hermione-HKX/Raster-Convolution-Search-and-CTM-Bench/blob/c7aaa7e8c31db15f4f7df7673b2cecfc362b21cd/results/svgnest_public_xml.csv)，不是论文提出的栅格方法。[作者包装源码](https://github.com/Hermione-HKX/Raster-Convolution-Search-and-CTM-Bench)与 [SVGnest](https://github.com/Jack000/SVGnest)。
 4. Baldacci 等 (2014). [Algorithms for nesting with defects](https://doi.org/10.1016/j.dam.2012.03.026)。采用其中条带包装启发式分支。
 5. (2016). [A model-based heuristic for the irregular strip packing problem](https://doi.org/10.1590/0101-7438.2016.036.03.0447)。
 6. Antonio Martinez Sykora (2013). [Nesting problems: exact and heuristic algorithms](https://www.uv.es/marsyan/docs/thesis.pdf)，学位论文第 6 章构造启发式 CHS2。
